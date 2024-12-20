@@ -43,8 +43,8 @@ resource "aws_api_gateway_integration_response" "this" {
   status_code = aws_api_gateway_method_response.this.status_code
 
   response_parameters = {
-    "method.response.header.Access-Control-Allow-Headers" = "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
-    "method.response.header.Access-Control-Allow-Methods" = "'GET,POST,PUT,DELETE,OPTIONS'"
-    "method.response.header.Access-Control-Allow-Origin"  = "'*'"
+    "method.response.header.Access-Control-Allow-Headers" = "'${join(",", var.allow_headers)}'"
+    "method.response.header.Access-Control-Allow-Methods" = "'${join(",", var.allow_methods)}'"
+    "method.response.header.Access-Control-Allow-Origin"  = "'${join(",", var.allow_origin)}'"
   }
 }
